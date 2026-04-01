@@ -1,0 +1,14 @@
+### Obtener últimos estrenos
+GET http://localhost:3000/api/juegos/top/ultimos
+
+### Obtener los más populares
+GET http://localhost:3000/api/juegos/top/populares
+
+### Filtrar juegos por texto y/o plataforma
+GET http://localhost:3000/api/juegos/filtrar?texto=Adventure&idPlataforma=10
+
+### Filtrar juegos por texto y/o plataforma
+GET http://localhost:3000/api/juegos/filtrar?texto=Juego de Prueba
+
+### Contar coincidencias con filtro
+GET http://localhost:3000/api/juegos/filtrar/contar?texto=Adventure&idPlataforma=10

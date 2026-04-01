@@ -1,0 +1,38 @@
+### Obtener todos los juegos (paginado)
+GET http://localhost:3000/api/juegos?pagina=2&limite=10
+
+### Obtener un juego por ID
+GET http://localhost:3000/api/juegos/508493
+
+### Crear un nuevo juego
+POST http://localhost:3000/api/juegos
+Content-Type: application/json
+
+{
+  "nombre": "Juego de Prueba",
+  "fechaEstreno": "2025-08-01T00:00:00.000Z",
+  "urlWeb": "https://ejemplo.com",
+  "genero": "Aventura",
+  "dearrollador": "Desarrolladora SA",
+  "idPlataforma": 1,
+  "valoracion": 90,
+  "opiniones": 1500
+}
+
+### Actualizar un juego existente
+PUT http://localhost:3000/api/juegos/508497
+Content-Type: application/json
+
+{
+  "nombre": "Juego de Prueba",
+  "fechaEstreno": "2025-08-15T00:00:00.000Z",
+  "urlWeb": "https://ejemplo.com",
+  "genero": "Acción",
+  "dearrollador": "Estudio XYZ",
+  "idPlataforma": 10,
+  "valoracion": 95,
+  "opiniones": 1600
+}
+
+### Eliminar un juego
+DELETE http://localhost:3000/api/juegos/508497
