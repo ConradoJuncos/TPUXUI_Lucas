@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { HashRouter, Routes, Route, Navigate } from "react-router-dom";
 import Juegos from "./pages/Juegos";
 import UltimosEstrenos from "./pages/UltimosEstrenos";
 import FormularioJuego from "./pages/FormularioJuego";
@@ -12,7 +12,7 @@ function App() {
   const [juegosFiltrado, setJuegosFiltrado] = useState(0);
 
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Encabezado />
       <main className="app-main">
         <Routes>
@@ -24,7 +24,7 @@ function App() {
         </Routes>
       </main>
       <PiePagina juegosFiltradoCount={juegosFiltrado} />
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 
