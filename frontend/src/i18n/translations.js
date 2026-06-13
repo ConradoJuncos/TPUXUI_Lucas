@@ -1,0 +1,223 @@
+/* ==========================================================================
+   Diccionario de textos de la interfaz en español e inglés.
+   Cada idioma expone la misma forma de objeto, consumida a través de
+   PreferencesContext (t = translations[lang]).
+   ========================================================================== */
+
+export const translations = {
+  es: {
+    theme: {
+      toLight: "Cambiar a modo claro",
+      toDark: "Cambiar a modo oscuro",
+    },
+    language: {
+      toggleLabel: "Cambiar idioma a inglés",
+    },
+    nav: {
+      ariaLabel: "Navegación principal",
+      games: "Juegos",
+      releases: "Estrenos",
+      newGame: "Nuevo juego",
+      userName: "Nombre Apellido",
+    },
+    footer: {
+      loadingCatalog: "Cargando catálogo…",
+      gamesInCatalog: (n) => `${n} juego${n === 1 ? "" : "s"} en el catálogo`,
+      matchesSearch: (n) => `${n} ${n === 1 ? "coincide" : "coinciden"} con tu búsqueda`,
+      copyright:
+        "© 2026 GameVault. Proyecto académico de Interfaz y Experiencia de Usuario — datos de demostración.",
+    },
+    esrb: {
+      E: { code: "E", label: "Para todo público" },
+      E10: { code: "E10+", label: "Mayores de 10 años" },
+      T: { code: "T", label: "Adolescentes" },
+      M: { code: "M", label: "Contenido maduro" },
+      AO: { code: "AO", label: "Solo adultos" },
+      RP: { code: "RP", label: "Calificación pendiente" },
+      UR: { code: "UR", label: "Sin calificar" },
+    },
+    common: {
+      visitWebsite: "Visitar sitio oficial",
+      opensInNewTab: " (se abre en una pestaña nueva)",
+      edit: "Editar",
+      delete: "Eliminar",
+      save: "Guardar",
+      saving: "Guardando…",
+      cancel: "Cancelar",
+      ratingLabel: (valoracion, opiniones) =>
+        `Valoración: ${valoracion} sobre 100, con ${opiniones} opiniones`,
+      reviewsWord: "opiniones",
+      dateLocale: "es-AR",
+    },
+    juegos: {
+      title: "Catálogo de juegos",
+      lead: "Explorá los juegos más valorados o filtrá por nombre, plataforma y clasificación de contenido.",
+      filtersTitle: "Filtrar juegos",
+      searchLabel: "Nombre, género o desarrollador",
+      searchPlaceholder: "Ej: Zelda, RPG, Nintendo…",
+      platformLabel: "Plataforma",
+      allPlatforms: "Todas las plataformas",
+      esrbLabel: "Clasificación ESRB",
+      allRatings: "Todas las clasificaciones",
+      filter: "Filtrar",
+      clear: "Limpiar",
+      loading: "Cargando juegos…",
+      empty: "No encontramos juegos que coincidan con tu búsqueda.",
+      clearFilters: "Limpiar filtros",
+      resultsCount: (n) => `Mostrando ${n} juego${n === 1 ? "" : "s"}`,
+      confirmDelete: (nombre) =>
+        `¿Seguro que deseas eliminar "${nombre}"? Esta acción no se puede deshacer.`,
+    },
+    estrenos: {
+      title: "Últimos estrenos",
+      lead: "Los lanzamientos más recientes agregados al catálogo, ordenados de más nuevo a más antiguo.",
+      loading: "Cargando estrenos…",
+      empty: "Todavía no hay estrenos para mostrar.",
+      newBadge: "Nuevo",
+    },
+    formulario: {
+      titleNew: "Nuevo juego",
+      titleEdit: "Editar juego",
+      leadNew: "Completá los datos para agregar un juego al catálogo.",
+      leadEdit: "Actualizá la información del juego seleccionado.",
+      requiredSuffix: " (obligatorio)",
+      sections: {
+        general: "Información general",
+        rating: "Valoración y clasificación",
+        links: "Enlaces",
+      },
+      fields: {
+        nombre: "Nombre",
+        genero: "Género",
+        desarrollador: "Desarrollador",
+        fechaEstreno: "Fecha de estreno",
+        plataforma: "Plataforma",
+        valoracion: "Valoración (0 a 100)",
+        opiniones: "Cantidad de opiniones",
+        esrb: "Clasificación ESRB",
+        urlWeb: "Sitio web oficial",
+      },
+      placeholders: {
+        urlWeb: "https://...",
+      },
+      selectPlatform: "Seleccioná una plataforma",
+      selectRating: "Seleccioná una clasificación",
+      errors: {
+        nombre: "Ingresá el nombre del juego.",
+        genero: "Ingresá el género del juego.",
+        desarrollador: "Ingresá el estudio desarrollador.",
+        fechaEstreno: "Seleccioná la fecha de estreno.",
+        plataforma: "Seleccioná una plataforma.",
+        esrb: "Seleccioná una clasificación ESRB.",
+      },
+    },
+  },
+
+  en: {
+    theme: {
+      toLight: "Switch to light mode",
+      toDark: "Switch to dark mode",
+    },
+    language: {
+      toggleLabel: "Switch language to Spanish",
+    },
+    nav: {
+      ariaLabel: "Main navigation",
+      games: "Games",
+      releases: "Releases",
+      newGame: "New game",
+      userName: "First Last",
+    },
+    footer: {
+      loadingCatalog: "Loading catalog…",
+      gamesInCatalog: (n) => `${n} game${n === 1 ? "" : "s"} in the catalog`,
+      matchesSearch: (n) => `${n} ${n === 1 ? "match" : "matches"} your search`,
+      copyright:
+        "© 2026 GameVault. Academic project for User Interface and Experience — demo data.",
+    },
+    esrb: {
+      E: { code: "E", label: "Everyone" },
+      E10: { code: "E10+", label: "Everyone 10+" },
+      T: { code: "T", label: "Teen" },
+      M: { code: "M", label: "Mature" },
+      AO: { code: "AO", label: "Adults Only" },
+      RP: { code: "RP", label: "Rating Pending" },
+      UR: { code: "UR", label: "Unrated" },
+    },
+    common: {
+      visitWebsite: "Visit official website",
+      opensInNewTab: " (opens in a new tab)",
+      edit: "Edit",
+      delete: "Delete",
+      save: "Save",
+      saving: "Saving…",
+      cancel: "Cancel",
+      ratingLabel: (valoracion, opiniones) =>
+        `Rating: ${valoracion} out of 100, with ${opiniones} reviews`,
+      reviewsWord: "reviews",
+      dateLocale: "en-US",
+    },
+    juegos: {
+      title: "Games Catalog",
+      lead: "Browse the highest-rated games or filter by name, platform and content rating.",
+      filtersTitle: "Filter games",
+      searchLabel: "Name, genre or developer",
+      searchPlaceholder: "E.g.: Zelda, RPG, Nintendo…",
+      platformLabel: "Platform",
+      allPlatforms: "All platforms",
+      esrbLabel: "ESRB rating",
+      allRatings: "All ratings",
+      filter: "Filter",
+      clear: "Clear",
+      loading: "Loading games…",
+      empty: "We couldn't find any games matching your search.",
+      clearFilters: "Clear filters",
+      resultsCount: (n) => `Showing ${n} game${n === 1 ? "" : "s"}`,
+      confirmDelete: (nombre) =>
+        `Are you sure you want to delete "${nombre}"? This action cannot be undone.`,
+    },
+    estrenos: {
+      title: "Latest Releases",
+      lead: "The most recent additions to the catalog, sorted from newest to oldest.",
+      loading: "Loading releases…",
+      empty: "There are no releases to show yet.",
+      newBadge: "New",
+    },
+    formulario: {
+      titleNew: "New game",
+      titleEdit: "Edit game",
+      leadNew: "Fill in the details to add a game to the catalog.",
+      leadEdit: "Update the information for the selected game.",
+      requiredSuffix: " (required)",
+      sections: {
+        general: "General information",
+        rating: "Rating and classification",
+        links: "Links",
+      },
+      fields: {
+        nombre: "Name",
+        genero: "Genre",
+        desarrollador: "Developer",
+        fechaEstreno: "Release date",
+        plataforma: "Platform",
+        valoracion: "Rating (0 to 100)",
+        opiniones: "Number of reviews",
+        esrb: "ESRB rating",
+        urlWeb: "Official website",
+      },
+      placeholders: {
+        urlWeb: "https://...",
+      },
+      selectPlatform: "Select a platform",
+      selectRating: "Select a rating",
+      errors: {
+        nombre: "Enter the game's name.",
+        genero: "Enter the game's genre.",
+        desarrollador: "Enter the developer studio.",
+        fechaEstreno: "Select the release date.",
+        plataforma: "Select a platform.",
+        esrb: "Select an ESRB rating.",
+      },
+    },
+  },
+};

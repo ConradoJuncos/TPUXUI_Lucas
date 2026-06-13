@@ -1,39 +1,39 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import juegosService from "../services/juegos.service";
+import { usePreferences } from "../context/PreferencesContext";
 
-function PiePagina(juegosFiltrado) {
-  const [juegosTotal, setJuegosTotal] = useState(0);
-
-  const cargarJuegosTotales = async () => {
-    const data = await juegosService.contarJuegos();
-    setJuegosTotal(data);
-  };
+function PiePagina({ juegosFiltradoCount }) {
+  const [juegosTotal, setJuegosTotal] = useState(null);
+  const { t } = usePreferences();
 
   useEffect(() => {
-    cargarJuegosTotales();
+    juegosService.contarJuegos().then(setJuegosTotal);
   }, []);
 
+  const hayFiltro = typeof juegosFiltradoCount === "number";
 
   return (
-    <footer className="bg-light text-center py-4 mt-5">
-      <div className="container">
-        <small className="d-block mb-2">
-          &copy; 2025 Odio esta materia.
-          <img
-            width="50"
-            height="50"
-            src="https://alfabetajuega.com/hero/2024/08/kento-nanami-en-la-segunda-temporada-de-jujutsu-kaisen.jpg?width=768&aspect_ratio=16:9&format=nowebp"
-            alt="Kento Nanami from Jujutsu Kaisen"
-            className="ms-2 rounded-circle"
-            style={{ objectFit: 'cover' }}
-          />
-        </small>
-        {juegosTotal !== null && (
-          <p className="mb-0">Juegos totales en la base de datos: {juegosTotal}</p>
-        )}
-        {juegosFiltrado.cantidad !== null && (
-          <p className="mb-0">Juegos totales filtrados: {juegosFiltrado.juegosFiltradoCount || juegosTotal}</p>
-        )}
+    <footer className="site-footer">
+      <div className="site-footer__content">
+        <div className="site-footer__brand">
+          <i className="bi bi-controller" aria-hidden="true"></i>
+          <span>GameVault</span>
+        </div>
+
+        <p className="site-footer__stats">
+          <i className="bi bi-collection" aria-hidden="true"></i>
+          {juegosTotal === null
+            ? t.footer.loadingCatalog
+            : t.footer.gamesInCatalog(juegosTotal)}
+          {hayFiltro && (
+            <span className="site-footer__stats-extra">
+              {" · "}
+              {t.footer.matchesSearch(juegosFiltradoCount)}
+            </span>
+          )}
+        </p>
+
+        <p className="site-footer__copy">{t.footer.copyright}</p>
       </div>
     </footer>
   );

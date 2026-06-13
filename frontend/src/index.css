@@ -1,49 +1,232 @@
+/* ==========================================================================
+   Sistema de diseño global
+   ==========================================================================
+   Centraliza la paleta de colores, tipografía, espaciados y otros tokens
+   visuales para que toda la app sea consistente (principio de
+   "Consistencia" de los lineamientos UX/UI). Reemplaza el tema oscuro que
+   traía la plantilla por defecto de Vite, que no se usaba en el resto de
+   la interfaz (basada en componentes claros de Bootstrap) y generaba
+   contrastes inconsistentes.
+   ========================================================================== */
+
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+  /* Tipografía: una sola familia para toda la app (máx. 1-2 fuentes
+     recomendado). Tamaño base 16px y line-height 1.5 para legibilidad. */
+  --font-base: 'Segoe UI', system-ui, Avenir, Helvetica, Arial, sans-serif;
+  --fs-base: 1rem;       /* 16px */
+  --fs-sm: 0.9375rem;    /* 15px */
+  --fs-lg: 1.125rem;     /* 18px */
+  --fs-xl: 1.375rem;     /* 22px */
+  --fs-2xl: 1.75rem;     /* 28px */
+  --fs-3xl: 2.25rem;     /* 36px */
+  --line-height-base: 1.5;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  /* Paleta de marca: un color primario (índigo) y un acento cálido
+     (ámbar), ambos elegidos para cumplir un contraste mínimo de 4.5:1
+     sobre fondo blanco en texto normal. */
+  --color-primary: #4338ca;       /* índigo 700 */
+  --color-primary-dark: #312e81;  /* índigo 900 */
+  --color-primary-light: #eef2ff; /* índigo 50 */
+  --color-accent: #ea580c;        /* naranja 600 */
+  --color-accent-light: #ffedd5;  /* naranja 100 */
 
+  /* Estados semánticos (siempre acompañados de texto/ícono, nunca solo
+     color, según el punto de accesibilidad de los lineamientos). */
+  --color-success: #15803d;
+  --color-success-bg: #dcfce7;
+  --color-info: #0e7490;
+  --color-info-bg: #cffafe;
+  --color-warning: #c2410c;
+  --color-warning-bg: #ffedd5;
+  --color-danger: #b91c1c;
+  --color-danger-bg: #fee2e2;
+  --color-neutral: #4c1d95;
+  --color-neutral-bg: #ede9fe;
+
+  /* Neutros / superficies */
+  --color-bg: #f6f7fb;
+  --color-surface: #ffffff;
+  --color-border: #e2e8f0;
+  --color-text: #1e293b;
+  --color-text-muted: #475569;
+  --color-text-on-dark: #f1f5f9;
+  --color-dark: #1e1b33;
+
+  /* Espaciado (escala de 4px) */
+  --space-1: 0.25rem;  /* 4px */
+  --space-2: 0.5rem;   /* 8px */
+  --space-3: 0.75rem;  /* 12px */
+  --space-4: 1rem;     /* 16px */
+  --space-5: 1.5rem;   /* 24px */
+  --space-6: 2rem;     /* 32px */
+  --space-7: 3rem;     /* 48px */
+
+  /* Bordes y sombras */
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-pill: 999px;
+  --shadow-sm: 0 1px 3px rgba(30, 27, 51, 0.08);
+  --shadow-md: 0 8px 24px rgba(30, 27, 51, 0.12);
+  --shadow-lg: 0 16px 40px rgba(30, 27, 51, 0.18);
+
+  /* Tamaño táctil mínimo recomendado para mobile (44-48px) */
+  --touch-target: 48px;
+
+  /* Gradiente de fondo muy sutil: un leve degradado entre dos tonos
+     cercanos al color de fondo base, para dar profundidad sin afectar
+     la legibilidad ni el contraste del contenido. */
+  --gradient-bg: linear-gradient(160deg, #f6f7fb 0%, #eef1fb 45%, #f8f6fc 100%);
+
+  color-scheme: light;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
-  vertical-align: top;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* ==========================================================================
+   Modo oscuro
+   ==========================================================================
+   Redefine los mismos tokens de color sobre fondos y superficies oscuras,
+   manteniendo el contraste mínimo de 4.5:1. Se activa agregando
+   data-theme="dark" al elemento <html> (ver PreferencesContext), que
+   también controla data-bs-theme para que los componentes de Bootstrap
+   (inputs, selects, botones) adopten su variante oscura nativa.
+   ========================================================================== */
+:root[data-theme="dark"] {
+  --color-primary: #818cf8;        /* índigo 400 */
+  --color-primary-dark: #c7d2fe;   /* índigo 200, usado como texto claro */
+  --color-primary-light: #2c2a52;  /* superficie índigo oscura */
+  --color-accent: #fb923c;         /* naranja 400 */
+  --color-accent-light: #4a2c10;
+
+  --color-success: #4ade80;
+  --color-success-bg: #14301f;
+  --color-info: #67e8f9;
+  --color-info-bg: #0f2e36;
+  --color-warning: #fbbf24;
+  --color-warning-bg: #3a2a0c;
+  --color-danger: #f87171;
+  --color-danger-bg: #3a1414;
+  --color-neutral: #c4b5fd;
+  --color-neutral-bg: #2a2150;
+
+  --color-bg: #0f1117;
+  --color-surface: #1b1e2b;
+  --color-border: #2e3344;
+  --color-text: #e5e7eb;
+  --color-text-muted: #9aa3b5;
+  --color-text-on-dark: #f1f5f9;
+  --color-dark: #07080d;
+
+  --gradient-bg: linear-gradient(160deg, #0f1117 0%, #161a28 45%, #11131c 100%);
+
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 100%; /* respeta la config. del navegador, 1rem = 16px */
+}
+
+body {
+  font-family: var(--font-base);
+  font-size: var(--fs-base);
+  line-height: var(--line-height-base);
+  color: var(--color-text);
+  background: var(--gradient-bg);
+  min-height: 100vh;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+/* Transición suave al cambiar entre modo claro y oscuro en las
+   superficies principales de la interfaz. */
+.site-header,
+.site-footer,
+.site-nav,
+.usuario-pill,
+.filters-card,
+.game-card,
+.game-form__section,
+.state-message,
+.form-control,
+.form-select,
+.btn {
+  transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--color-text);
+}
+
+h1 { font-size: var(--fs-3xl); }
+h2 { font-size: var(--fs-2xl); }
+h3 { font-size: var(--fs-xl); }
+
 a {
+  color: var(--color-primary);
+  text-decoration: none;
   font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
 }
 a:hover {
-  color: #535bf2;
+  color: var(--color-primary-dark);
+  text-decoration: underline;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+/* Estado de foco visible y consistente para navegación por teclado
+   (requisito de accesibilidad: "Navegación completa por teclado"). */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+.nav-link:focus-visible {
+  outline: 3px solid var(--color-accent);
+  outline-offset: 2px;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
+/* Tamaño táctil mínimo para todos los botones y controles, clave en
+   mobile (mínimo 44x44px, recomendado 48x48px). */
+button,
+.btn,
+input,
+select,
+textarea {
   font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  font-size: var(--fs-base);
 }
 
+.btn {
+  min-height: var(--touch-target);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  font-weight: 600;
+}
+
+.form-control,
+.form-select {
+  min-height: var(--touch-target);
+  font-size: var(--fs-base);
+}
+
+/* Helpers reutilizables */
+.text-muted-app {
+  color: var(--color-text-muted);
+}
+
+.visually-hidden-focusable:not(:focus):not(:focus-within) {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+}

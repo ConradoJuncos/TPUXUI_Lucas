@@ -1,8 +1,11 @@
-import axios from "./axios.config.js";
+import { plataformas } from "../data/mockPlataformas";
+
+// Servicio "mock": ver juegos.service.js para más contexto.
+const delay = (ms = 200) => new Promise((resolve) => setTimeout(resolve, ms));
 
 const obtenerTodas = async () => {
-  const response = await axios.get("/plataformas");
-  return response.data;
+  await delay();
+  return [...plataformas];
 };
 
 export default {

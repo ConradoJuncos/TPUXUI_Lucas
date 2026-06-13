@@ -1,6 +1,20 @@
+/* Estructura general de la app: el header y el footer ocupan todo el
+   ancho de la pantalla, mientras que el contenido principal se centra
+   en una columna legible (máx. 1280px) con espaciado consistente.
+   Antes #root tenía max-width: 1280px y text-align: center aplicado a
+   TODA la app (incluyendo header/footer), lo que impedía fondos a todo
+   lo ancho y centraba textos de forma poco predecible. */
 #root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  width: 100%;
+}
+
+.app-main {
+  flex: 1;
+  width: 100%;
   max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+  padding: var(--space-5) var(--space-4) var(--space-7);
 }
