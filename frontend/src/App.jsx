@@ -5,11 +5,18 @@ import UltimosEstrenos from "./pages/UltimosEstrenos";
 import FormularioJuego from "./pages/FormularioJuego";
 import Encabezado from "./components/Encabezado";
 import PiePagina from "./components/PiePagina";
+import LoginModal from "./components/LoginModal";
+import { useUser } from "./context/UserContext";
 
 import "./App.css";
 
 function App() {
   const [juegosFiltrado, setJuegosFiltrado] = useState(0);
+  const { usuario } = useUser();
+
+  if (!usuario) {
+    return <LoginModal />;
+  }
 
   return (
     <HashRouter>

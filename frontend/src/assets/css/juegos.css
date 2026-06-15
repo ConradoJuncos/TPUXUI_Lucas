@@ -105,10 +105,17 @@ body {
   background-color: var(--color-surface);
   color: var(--color-primary-dark);
   padding: var(--space-1) var(--space-3);
+  border: none;
   border-radius: var(--radius-pill);
   font-weight: 600;
   font-size: var(--fs-base);
   box-shadow: var(--shadow-sm);
+  cursor: pointer;
+  transition: box-shadow 0.15s ease;
+}
+
+.usuario-pill:hover {
+  box-shadow: var(--shadow-md);
 }
 
 .usuario-pill__avatar {
@@ -119,11 +126,16 @@ body {
 }
 
 /* Ancho fijo para el nombre: evita que el resto de los botones del
-   encabezado se desplacen al cambiar de idioma (p. ej. "Nombre
-   Apellido" vs. "First Last"). */
+   encabezado se desplacen al cambiar de idioma o de usuario. Si el
+   nombre y apellido ingresados son muy largos, se recortan con
+   puntos suspensivos en lugar de romper el layout. */
 .usuario-pill__nombre {
   display: inline-block;
   min-width: 9rem;
+  max-width: 14rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 /* --------------------------------------------------------------------
@@ -273,4 +285,67 @@ body {
   margin: 0;
   font-size: var(--fs-sm);
   color: #c7c4e0;
+}
+
+/* --------------------------------------------------------------------
+   Login (sistema de prueba)
+   -------------------------------------------------------------------- */
+.login-overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: var(--space-4);
+  background: var(--gradient-bg);
+}
+
+.login-modal {
+  width: 100%;
+  max-width: 420px;
+  background-color: var(--color-surface);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  padding: var(--space-5);
+}
+
+.login-modal__title {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-bottom: var(--space-2);
+}
+
+.login-modal__title i {
+  color: var(--color-accent);
+}
+
+.login-modal__lead {
+  color: var(--color-text-muted);
+  font-size: var(--fs-sm);
+  margin-bottom: var(--space-4);
+}
+
+.login-modal__field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin-bottom: var(--space-4);
+}
+
+.login-modal__field label {
+  font-weight: 600;
+  font-size: var(--fs-sm);
+}
+
+.login-modal__actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.login-modal__actions .btn {
+  width: 100%;
 }

@@ -18,7 +18,7 @@ export const translations = {
       games: "Juegos",
       releases: "Estrenos",
       newGame: "Nuevo juego",
-      userName: "Nombre Apellido",
+      switchUser: "Cambiar de usuario",
     },
     footer: {
       loadingCatalog: "Cargando catálogo…",
@@ -111,6 +111,25 @@ export const translations = {
         esrb: "Seleccioná una clasificación ESRB.",
       },
     },
+    login: {
+      title: "Iniciar sesión",
+      lead: "Sistema de inicio de sesión de prueba: ingresá tu nombre y apellido para identificarte en GameVault. La contraseña no se valida.",
+      fields: {
+        nombre: "Nombre",
+        apellido: "Apellido",
+        contrasena: "Contraseña",
+      },
+      placeholders: {
+        nombre: "Ej: Ada",
+        apellido: "Ej: Lovelace",
+      },
+      submit: "Ingresar",
+      errors: {
+        nombre: "Ingresá tu nombre.",
+        apellido: "Ingresá tu apellido.",
+        contrasena: "Ingresá una contraseña.",
+      },
+    },
   },
 
   en: {
@@ -126,7 +145,7 @@ export const translations = {
       games: "Games",
       releases: "Releases",
       newGame: "New game",
-      userName: "First Last",
+      switchUser: "Switch user",
     },
     footer: {
       loadingCatalog: "Loading catalog…",
@@ -217,6 +236,25 @@ export const translations = {
         fechaEstreno: "Select the release date.",
         plataforma: "Select a platform.",
         esrb: "Select an ESRB rating.",
+      },
+    },
+    login: {
+      title: "Log in",
+      lead: "Test login system: enter your first and last name to identify yourself in GameVault. The password isn't validated.",
+      fields: {
+        nombre: "First name",
+        apellido: "Last name",
+        contrasena: "Password",
+      },
+      placeholders: {
+        nombre: "E.g.: Ada",
+        apellido: "E.g.: Lovelace",
+      },
+      submit: "Log in",
+      errors: {
+        nombre: "Enter your first name.",
+        apellido: "Enter your last name.",
+        contrasena: "Enter a password.",
       },
     },
   },

@@ -1,12 +1,14 @@
 import { NavLink } from 'react-router-dom';
 import usuarioPlaceholder from '../assets/images/user-placeholder.png';
 import { usePreferences } from '../context/PreferencesContext';
+import { useUser } from '../context/UserContext';
 
 const claseEnlace = ({ isActive }) =>
     `site-nav__link${isActive ? ' is-active' : ''}`;
 
 export default function Encabezado() {
     const { theme, toggleTheme, lang, toggleLang, t } = usePreferences();
+    const { usuario, logout } = useUser();
 
     const enlaces = [
         { to: '/juegos/lista', icono: 'bi-joystick', etiqueta: t.nav.games },
@@ -48,14 +50,20 @@ export default function Encabezado() {
                         </button>
                     </div>
 
-                    <div className="usuario-pill">
+                    <button
+                        type="button"
+                        className="usuario-pill"
+                        onClick={logout}
+                        aria-label={t.nav.switchUser}
+                        title={t.nav.switchUser}
+                    >
                         <img
                             src={usuarioPlaceholder}
                             alt=""
                             className="usuario-pill__avatar"
                         />
-                        <span className="usuario-pill__nombre">{t.nav.userName}</span>
-                    </div>
+                        <span className="usuario-pill__nombre">{usuario.nombre} {usuario.apellido}</span>
+                    </button>
                 </div>
             </div>
 

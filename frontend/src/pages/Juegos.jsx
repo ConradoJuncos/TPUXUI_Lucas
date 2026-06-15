@@ -162,6 +162,12 @@ const Juegos = ({ setFilteredGameCount }) => {
         </div>
       )}
 
+      {!cargando && (
+        <p className="results-count" aria-live="polite">
+          {t.juegos.resultsCount(juegos.length)}
+        </p>
+      )}
+
       {!cargando && juegos.length === 0 && (
         <div className="state-message">
           <i className="bi bi-emoji-frown state-message__icon" aria-hidden="true"></i>
@@ -173,12 +179,7 @@ const Juegos = ({ setFilteredGameCount }) => {
       )}
 
       {!cargando && juegos.length > 0 && (
-        <>
-          <p className="results-count" aria-live="polite">
-            {t.juegos.resultsCount(juegos.length)}
-          </p>
-
-          <div className="games-grid">
+        <div className="games-grid">
             {juegos.map((juego) => {
               const meta = ESRB_META[juego.ESRB] || ESRB_META.UR;
               const etiquetaEsrb = (t.esrb[juego.ESRB] || t.esrb.UR).label;
@@ -241,8 +242,7 @@ const Juegos = ({ setFilteredGameCount }) => {
                 </article>
               );
             })}
-          </div>
-        </>
+        </div>
       )}
     </div>
   );
