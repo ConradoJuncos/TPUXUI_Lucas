@@ -76,8 +76,7 @@ const getMasPopulares = async () => {
   await delay();
   return [...juegos]
     .filter((j) => j.opiniones > 500)
-    .sort((a, b) => b.valoracion - a.valoracion)
-    .slice(0, 10);
+    .sort((a, b) => b.valoracion - a.valoracion);
 };
 
 const coincideFiltros = (juego, { texto, idPlataforma, ESRB } = {}) => {
@@ -98,8 +97,7 @@ const buscarFiltrado = async (filtros) => {
   await delay();
   return [...juegos]
     .filter((j) => coincideFiltros(j, filtros))
-    .sort((a, b) => new Date(b.fechaEstreno) - new Date(a.fechaEstreno))
-    .slice(0, 25);
+    .sort((a, b) => new Date(b.fechaEstreno) - new Date(a.fechaEstreno));
 };
 
 const contarJuegos = async (filtros = {}) => {

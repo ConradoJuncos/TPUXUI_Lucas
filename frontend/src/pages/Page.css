@@ -18,7 +18,7 @@
 .page-header__lead {
   color: var(--color-text-muted);
   font-size: var(--fs-lg);
-  max-width: 60ch;
+  max-width: 75ch;
 }
 
 /* --------------------------------------------------------------------

@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import usuarioPlaceholder from '../assets/images/user-placeholder.png';
 import { usePreferences } from '../context/PreferencesContext';
 import { useUser } from '../context/UserContext';
@@ -50,20 +50,31 @@ export default function Encabezado() {
                         </button>
                     </div>
 
-                    <button
-                        type="button"
-                        className="usuario-pill"
-                        onClick={logout}
-                        aria-label={t.nav.switchUser}
-                        title={t.nav.switchUser}
-                    >
-                        <img
-                            src={usuarioPlaceholder}
-                            alt=""
-                            className="usuario-pill__avatar"
-                        />
-                        <span className="usuario-pill__nombre">{usuario.nombre} {usuario.apellido}</span>
-                    </button>
+                    {usuario ? (
+                        <button
+                            type="button"
+                            className="usuario-pill"
+                            onClick={logout}
+                            aria-label={t.nav.switchUser}
+                            title={t.nav.switchUser}
+                        >
+                            <img
+                                src={usuarioPlaceholder}
+                                alt=""
+                                className="usuario-pill__avatar"
+                            />
+                            <span className="usuario-pill__nombre">{usuario.nombre} {usuario.apellido}</span>
+                        </button>
+                    ) : (
+                        <Link
+                            to="/login"
+                            className="icon-toggle"
+                            aria-label={t.login.title}
+                            title={t.login.title}
+                        >
+                            <i className="bi bi-incognito" aria-hidden="true"></i>
+                        </Link>
+                    )}
                 </div>
             </div>
 

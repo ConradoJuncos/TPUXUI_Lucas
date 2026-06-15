@@ -24,8 +24,7 @@ export const translations = {
       loadingCatalog: "Cargando catálogo…",
       gamesInCatalog: (n) => `${n} juego${n === 1 ? "" : "s"} en el catálogo`,
       matchesSearch: (n) => `${n} ${n === 1 ? "coincide" : "coinciden"} con tu búsqueda`,
-      copyright:
-        "© 2026 GameVault. Proyecto académico de Interfaz y Experiencia de Usuario — datos de demostración.",
+      copyright: "© 2026 GameVault. Todos los derechos reservados.",
     },
     esrb: {
       E: { code: "E", label: "Para todo público" },
@@ -61,6 +60,14 @@ export const translations = {
       allRatings: "Todas las clasificaciones",
       filter: "Filtrar",
       clear: "Limpiar",
+      pageSizeLabel: "Mostrar",
+      pageSizeOption: (n) => `${n} juegos`,
+      sortLabel: "Ordenar por",
+      sortOptions: {
+        relevancia: "Relevancia",
+        alfabetico: "Alfabético (A-Z)",
+        calificacion: "Calificación (mayor a menor)",
+      },
       loading: "Cargando juegos…",
       empty: "No encontramos juegos que coincidan con tu búsqueda.",
       clearFilters: "Limpiar filtros",
@@ -151,8 +158,7 @@ export const translations = {
       loadingCatalog: "Loading catalog…",
       gamesInCatalog: (n) => `${n} game${n === 1 ? "" : "s"} in the catalog`,
       matchesSearch: (n) => `${n} ${n === 1 ? "match" : "matches"} your search`,
-      copyright:
-        "© 2026 GameVault. Academic project for User Interface and Experience — demo data.",
+      copyright: "© 2026 GameVault. All rights reserved.",
     },
     esrb: {
       E: { code: "E", label: "Everyone" },
@@ -188,6 +194,14 @@ export const translations = {
       allRatings: "All ratings",
       filter: "Filter",
       clear: "Clear",
+      pageSizeLabel: "Show",
+      pageSizeOption: (n) => `${n} games`,
+      sortLabel: "Sort by",
+      sortOptions: {
+        relevancia: "Relevance",
+        alfabetico: "Alphabetical (A-Z)",
+        calificacion: "Rating (highest first)",
+      },
       loading: "Loading games…",
       empty: "We couldn't find any games matching your search.",
       clearFilters: "Clear filters",

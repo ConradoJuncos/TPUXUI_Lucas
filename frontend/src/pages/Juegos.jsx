@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import juegosService from "../services/juegos.service";
 import plataformasService from "../services/plataformas.service";
 import { usePreferences } from "../context/PreferencesContext";
+import { useUser } from "../context/UserContext";
 
 import "./Page.css";
 
@@ -46,9 +47,13 @@ const Juegos = ({ setFilteredGameCount }) => {
     idPlataforma: "",
     ESRB: ""
   });
+  const [pageSize, setPageSize] = useState(10);
+  const [orden, setOrden] = useState("relevancia");
 
   const navigate = useNavigate();
   const { t } = usePreferences();
+  const { usuario } = useUser();
+  const esAdmin = usuario?.nombre === "Admin";
 
   const cargarPopulares = async () => {
     setCargando(true);
@@ -89,6 +94,13 @@ const Juegos = ({ setFilteredGameCount }) => {
     cargarPlataformas();
     cargarPopulares();
   }, []);
+
+  const juegosOrdenados = [...juegos].sort((a, b) => {
+    if (orden === "alfabetico") return a.nombre.localeCompare(b.nombre, t.common.dateLocale);
+    if (orden === "calificacion") return b.valoracion - a.valoracion;
+    return 0;
+  });
+  const juegosVisibles = juegosOrdenados.slice(0, pageSize);
 
   return (
     <div className="page-juegos">
@@ -144,6 +156,34 @@ const Juegos = ({ setFilteredGameCount }) => {
             </select>
           </div>
 
+          <div className="filters-form__field">
+            <label htmlFor="orden-juegos">{t.juegos.sortLabel}</label>
+            <select
+              id="orden-juegos"
+              className="form-select"
+              value={orden}
+              onChange={(e) => setOrden(e.target.value)}
+            >
+              {Object.entries(t.juegos.sortOptions).map(([clave, etiqueta]) => (
+                <option key={clave} value={clave}>{etiqueta}</option>
+              ))}
+            </select>
+          </div>
+
+          <div className="filters-form__field">
+            <label htmlFor="tamano-pagina">{t.juegos.pageSizeLabel}</label>
+            <select
+              id="tamano-pagina"
+              className="form-select"
+              value={pageSize}
+              onChange={(e) => setPageSize(Number(e.target.value))}
+            >
+              {[10, 25, 100].map((n) => (
+                <option key={n} value={n}>{t.juegos.pageSizeOption(n)}</option>
+              ))}
+            </select>
+          </div>
+
           <div className="filters-form__actions">
             <button type="submit" className="btn btn-primary">
               <i className="bi bi-search" aria-hidden="true"></i> {t.juegos.filter}
@@ -164,7 +204,7 @@ const Juegos = ({ setFilteredGameCount }) => {
 
       {!cargando && (
         <p className="results-count" aria-live="polite">
-          {t.juegos.resultsCount(juegos.length)}
+          {t.juegos.resultsCount(juegosVisibles.length)}
         </p>
       )}
 
@@ -180,7 +220,7 @@ const Juegos = ({ setFilteredGameCount }) => {
 
       {!cargando && juegos.length > 0 && (
         <div className="games-grid">
-            {juegos.map((juego) => {
+            {juegosVisibles.map((juego) => {
               const meta = ESRB_META[juego.ESRB] || ESRB_META.UR;
               const etiquetaEsrb = (t.esrb[juego.ESRB] || t.esrb.UR).label;
               return (
@@ -225,20 +265,22 @@ const Juegos = ({ setFilteredGameCount }) => {
                     </a>
                   )}
 
-                  <div className="game-card__actions">
-                    <button
-                      className="btn btn-outline-primary"
-                      onClick={() => navigate(`/juegos/editar/${juego.id}`)}
-                    >
-                      <i className="bi bi-pencil-square" aria-hidden="true"></i> {t.common.edit}
-                    </button>
-                    <button
-                      className="btn btn-outline-danger"
-                      onClick={() => eliminar(juego.id, juego.nombre)}
-                    >
-                      <i className="bi bi-trash3" aria-hidden="true"></i> {t.common.delete}
-                    </button>
-                  </div>
+                  {esAdmin && (
+                    <div className="game-card__actions">
+                      <button
+                        className="btn btn-outline-primary"
+                        onClick={() => navigate(`/juegos/editar/${juego.id}`)}
+                      >
+                        <i className="bi bi-pencil-square" aria-hidden="true"></i> {t.common.edit}
+                      </button>
+                      <button
+                        className="btn btn-outline-danger"
+                        onClick={() => eliminar(juego.id, juego.nombre)}
+                      >
+                        <i className="bi bi-trash3" aria-hidden="true"></i> {t.common.delete}
+                      </button>
+                    </div>
+                  )}
                 </article>
               );
             })}

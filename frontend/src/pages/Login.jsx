@@ -1,10 +1,14 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { usePreferences } from '../context/PreferencesContext';
 import { useUser } from '../context/UserContext';
 
-export default function LoginModal() {
+import './Page.css';
+
+const Login = () => {
     const { t } = usePreferences();
     const { login } = useUser();
+    const navigate = useNavigate();
     const [form, setForm] = useState({ nombre: '', apellido: '', contrasena: '' });
     const [errores, setErrores] = useState({});
 
@@ -25,18 +29,19 @@ export default function LoginModal() {
         }
 
         login(form.nombre.trim(), form.apellido.trim());
+        navigate(-1);
     };
 
     return (
-        <div className="login-overlay">
-            <div className="login-modal" role="dialog" aria-modal="true" aria-labelledby="login-title">
-                <h1 id="login-title" className="login-modal__title">
-                    <i className="bi bi-controller" aria-hidden="true"></i> {t.login.title}
-                </h1>
-                <p className="login-modal__lead">{t.login.lead}</p>
+        <div className="page-login">
+            <header className="page-header">
+                <h1>{t.login.title}</h1>
+                <p className="page-header__lead">{t.login.lead}</p>
+            </header>
 
-                <form onSubmit={enviar} noValidate>
-                    <div className="login-modal__field">
+            <form onSubmit={enviar} noValidate className="game-form">
+                <fieldset className="game-form__section">
+                    <div className="game-form__field">
                         <label htmlFor="login-nombre">{t.login.fields.nombre}</label>
                         <input
                             id="login-nombre"
@@ -58,7 +63,7 @@ export default function LoginModal() {
                         )}
                     </div>
 
-                    <div className="login-modal__field">
+                    <div className="game-form__field">
                         <label htmlFor="login-apellido">{t.login.fields.apellido}</label>
                         <input
                             id="login-apellido"
@@ -79,7 +84,7 @@ export default function LoginModal() {
                         )}
                     </div>
 
-                    <div className="login-modal__field">
+                    <div className="game-form__field game-form__field--grow">
                         <label htmlFor="login-contrasena">{t.login.fields.contrasena}</label>
                         <input
                             id="login-contrasena"
@@ -98,14 +103,19 @@ export default function LoginModal() {
                             </p>
                         )}
                     </div>
+                </fieldset>
 
-                    <div className="login-modal__actions">
-                        <button type="submit" className="btn btn-primary">
-                            <i className="bi bi-box-arrow-in-right" aria-hidden="true"></i> {t.login.submit}
-                        </button>
-                    </div>
-                </form>
-            </div>
+                <div className="game-form__actions">
+                    <button type="submit" className="btn btn-primary">
+                        <i className="bi bi-box-arrow-in-right" aria-hidden="true"></i> {t.login.submit}
+                    </button>
+                    <button type="button" className="btn btn-outline-secondary" onClick={() => navigate(-1)}>
+                        <i className="bi bi-x-circle" aria-hidden="true"></i> {t.common.cancel}
+                    </button>
+                </div>
+            </form>
         </div>
     );
-}
+};
+
+export default Login;
