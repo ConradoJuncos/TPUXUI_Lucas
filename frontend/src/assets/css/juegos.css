@@ -119,10 +119,8 @@ body {
 }
 
 .usuario-pill__avatar {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  object-fit: cover;
+  font-size: 1.75rem;
+  line-height: 1;
 }
 
 /* Ancho fijo para el nombre: evita que el resto de los botones del

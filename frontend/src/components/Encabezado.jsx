@@ -1,5 +1,4 @@
 import { Link, NavLink } from 'react-router-dom';
-import usuarioPlaceholder from '../assets/images/user-placeholder.png';
 import { usePreferences } from '../context/PreferencesContext';
 import { useUser } from '../context/UserContext';
 
@@ -58,11 +57,7 @@ export default function Encabezado() {
                             aria-label={t.nav.switchUser}
                             title={t.nav.switchUser}
                         >
-                            <img
-                                src={usuarioPlaceholder}
-                                alt=""
-                                className="usuario-pill__avatar"
-                            />
+                            <i className="bi bi-person-circle usuario-pill__avatar" aria-hidden="true"></i>
                             <span className="usuario-pill__nombre">{usuario.nombre} {usuario.apellido}</span>
                         </button>
                     ) : (
