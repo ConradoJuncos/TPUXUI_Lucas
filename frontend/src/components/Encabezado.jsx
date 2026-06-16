@@ -9,10 +9,12 @@ export default function Encabezado() {
     const { theme, toggleTheme, lang, toggleLang, t } = usePreferences();
     const { usuario, logout } = useUser();
 
+    const esAdmin = usuario?.nombre === "Admin";
+
     const enlaces = [
         { to: '/juegos/lista', icono: 'bi-joystick', etiqueta: t.nav.games },
         { to: '/estrenos', icono: 'bi-stars', etiqueta: t.nav.releases },
-        { to: '/juegos/nuevo', icono: 'bi-plus-circle', etiqueta: t.nav.newGame },
+        ...(esAdmin ? [{ to: '/juegos/nuevo', icono: 'bi-plus-circle', etiqueta: t.nav.newGame }] : []),
     ];
 
     return (
